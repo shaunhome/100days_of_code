@@ -1,0 +1,32 @@
+import random
+import string
+
+def generate_password(favorite_food):
+    # Ensure input is valid
+    if not favorite_food:
+        print("Error: Favorite food cannot be empty.")
+        return None
+    
+    favorite_food = favorite_food.strip()  # Remove spaces from start and end
+    base = favorite_food.capitalize()  # Capitalize first letter
+
+    # Add random numbers
+    numbers = str(random.randint(10, 99))
+
+    # Add random symbols
+    symbols = random.choice("!@#$%^&*")
+
+    # Shuffle some characters for randomness
+    shuffled_part = ''.join(random.sample(base, len(base)))
+
+    # Combine to create a secure password
+    password = f"{shuffled_part}{numbers}{symbols}"
+
+    return password
+
+# Get user input
+favorite_food = input("Enter your favorite food: ")
+password = generate_password(favorite_food)
+
+if password:
+    print(f"Generated Password: {password}")
